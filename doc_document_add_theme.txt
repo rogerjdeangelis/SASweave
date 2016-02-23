@@ -1,0 +1,46 @@
+Win 7 32 bit Powerpoint 2010
+
+Once you have created your slides using ODS PDF and converted them to
+a ppt using the free BOXOFT PDF2PPT, you probably want to
+add a powerpoint theme. Make sure you used a SAS template that
+provides whitespace for the banner and slide number footnote.
+
+If you have a company custom template click on it and
+select all the slides, shift first slide then last slide,
+Then go to design tab then background slides then apply.
+All slides will now have then them behind the SAS foreground
+bitmaps.
+
+The following VBA macro will make the SAS bitmaps transparent
+and the company theme will appear on each slide.
+
+Note SAS does not provide the ability for a them using
+the template. Since SAS titles always appear at the top of a
+page you can imbed an image in title1. However I wanted the
+company powerpoint theme.
+
+Thanks to the Powerpoint Expert Steve Rindsberg for
+the macro below
+
+Sub SetXparency()
+
+
+Dim oSl As Slide
+
+For Each oSl In ActivePresentation.Slides
+
+    With oSl.Shapes(1)
+
+        With .PictureFormat
+
+            .TransparentBackground = msoTrue
+
+            .TransparencyColor = RGB(255, 255, 255)
+
+        End With
+
+    End With
+
+Next
+
+End Sub
